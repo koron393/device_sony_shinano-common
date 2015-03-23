@@ -24,6 +24,9 @@ on fs
     swapon_all ./fstab.shinano
     write /sys/kernel/boot_adsp/boot 1
 
+    # Start hvdcp to enable quck charge 2.0 in power off charge
+    start hvdcp
+
 on boot
     # WLAN
     chown system system /sys/devices/platform/bcmdhd_wlan/macaddr
@@ -119,6 +122,11 @@ service p2p_supplicant /system/bin/wpa_supplicant \
     socket wpa_wlan0 dgram 660 wifi wifi
     disabled
     oneshot
+
+service hvdcp /system/vendor/bin/hvdcp
+    class core
+    user root
+    disabled
 
 # brcm-uim-sysfs (BT/FM/ANT+)
 service uim /system/bin/brcm-uim-sysfs
