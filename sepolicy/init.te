@@ -1,0 +1,6 @@
+allow init self:capability sys_module;
+
+# Allow kernel module loading
+allow init system_file:system module_load;
+
+allow init sysfs_devfreq:lnk_file read;

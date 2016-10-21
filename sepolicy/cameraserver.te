@@ -1,0 +1,1 @@
+allow cameraserver sysfs_performance:dir r_dir_perms;

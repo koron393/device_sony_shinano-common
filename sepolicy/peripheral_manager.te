@@ -1,0 +1,7 @@
+# Need for perfd
+allow per_mgr mpctl_socket:sock_file { rw_file_perms create unlink setattr };
+allow per_mgr mpctl_socket:dir { rw_dir_perms remove_name add_name };
+allow per_mgr mpctl_data_file:file { rw_file_perms create };
+allow per_mgr mpctl_data_file:dir { rw_file_perms create add_name };
+allow per_mgr sysfs_thermal:file rw_file_perms;
+allow per_mgr self:capability fsetid;
