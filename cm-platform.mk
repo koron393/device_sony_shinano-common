@@ -46,6 +46,10 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
     libantradio
 
+# Audio
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
+
 # Dumpstate
 BOARD_LIB_DUMPSTATE := libdumpstate.sony
 
