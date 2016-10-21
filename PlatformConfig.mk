@@ -39,6 +39,7 @@ KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2671771648
 BOARD_BOOTIMAGE_PARTITION_SIZE := 20971520
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 16777216
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
 TARGET_RECOVERY_FSTAB = device/sony/shinano-common/rootdir/fstab.shinano
@@ -74,3 +75,6 @@ TARGET_SYSTEM_PROP += device/sony/shinano-common/system.prop
 BOARD_SEPOLICY_DIRS += device/sony/shinano-common/sepolicy
 
 include device/sony/common/CommonConfig.mk
+
+# TWRP
+include device/sony/shinano-common/twrp.mk
