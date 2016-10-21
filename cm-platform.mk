@@ -23,6 +23,9 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml
 
+# Overlay
+DEVICE_PACKAGE_OVERLAYS += device/sony/shinano-common/overlay
+
 # ANT+ Permissions
 PRODUCT_COPY_FILES += \
     external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:system/etc/permissions/com.dsi.ant.antradio_library.xml
