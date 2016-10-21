@@ -36,5 +36,17 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
     libantradio
 
+# NFC
+BOARD_NFC_CHIPSET := pn547
+BOARD_NFC_DEVICE := /dev/pn54x
+
+# NFC Packages
+PRODUCT_PACKAGES += \
+    nfc_nci.pn54x.default
+
+# NFC props (less logs)
+PRODUCT_PROPERTY_OVERRIDES += \
+    nfc.app_log_level=1
+
 # HWUI memory limits
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
