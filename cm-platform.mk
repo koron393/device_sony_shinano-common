@@ -23,6 +23,10 @@ TARGET_BOOTLOADER_BOARD_NAME := MSM8974
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml
 
+# Media codec
+PRODUCT_COPY_FILES += \
+    device/sony/shinano-common/rootdir/system/etc/media_codecs_cm.xml:system/etc/media_codecs.xml
+
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += device/sony/shinano-common/overlay
 
