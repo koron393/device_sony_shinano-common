@@ -48,5 +48,49 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     nfc.app_log_level=1
 
+# Off mode charger
+PRODUCT_PACKAGES += \
+    charger_res_images
+
+# Audio offload
+PRODUCT_PROPERTY_OVERRIDES += \
+    audio.offload.buffer.size.kb=32 \
+    audio.offload.gapless.enabled=false \
+    audio.offload.multiple.enabled=false \
+    audio.offload.pcm.enable=enable \
+    av.offload.enable=enable \
+    av.streaming.offload.enable=enable
+
+# Voice Call
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qc.sdk.audio.fluencetype=none \
+    persist.audio.dualmic.config=endfire \
+
+# aDSP
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.qualcomm.sensors.qmd=false \
+    debug.qualcomm.sns.hal=w \
+    ro.qc.sdk.sensors.gestures=false \
+    ro.qc.sensors.max_accel_rate=false \
+    ro.qc.sensors.max_gyro_rate=false \
+    ro.qc.sensors.max_mag_rate=false \
+    ro.qc.sensors.smgr_mag_cal_en=true \
+    ro.qualcomm.sensors.pedometer=false \
+    ro.qualcomm.sensors.pam=false \
+    ro.qualcomm.sensors.scrn_ortn=false \
+    ro.qualcomm.sensors.smd=sony \
+    ro.qc.sensors.step_detector=true \
+    ro.qc.sensors.step_counter=true \
+    ro.qualcomm.sensors.georv=true \
+    ro.qc.sensors.max_geomag_rotvec=50
+
+# HDMI
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.demo.hdmirotationlock=false
+
+# Touchscreen
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.input.noresample=1
+
 # HWUI memory limits
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
