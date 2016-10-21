@@ -36,6 +36,9 @@ PRODUCT_PACKAGES += \
     com.dsi.ant.antradio_library \
     libantradio
 
+# Dumpstate
+BOARD_LIB_DUMPSTATE := libdumpstate.sony
+
 # NFC
 BOARD_NFC_CHIPSET := pn547
 BOARD_NFC_DEVICE := /dev/pn54x
