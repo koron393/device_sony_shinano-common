@@ -12,8 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Common path
+COMMON_PATH := device/sony/common
+
+# Platform path
+PLATFORM_COMMON_PATH := device/sony/shinano-common
+
 # inherit from common
-$(call inherit-product, device/sony/common/cm-common.mk)
+$(call inherit-product, $(COMMON_PATH)/cm-common.mk)
 
 # Platform
 BOARD_VENDOR_PLATFORM := shinano
@@ -25,13 +31,13 @@ PRODUCT_COPY_FILES += \
 
 # Media codec
 PRODUCT_COPY_FILES += \
-    device/sony/shinano-common/rootdir/system/etc/media_codecs_cm.xml:system/etc/media_codecs.xml
+    $(PLATFORM_COMMON_PATH)/rootdir/system/etc/media_codecs_cm.xml:system/etc/media_codecs.xml
 
 # Overlay
-DEVICE_PACKAGE_OVERLAYS += device/sony/shinano-common/overlay
+DEVICE_PACKAGE_OVERLAYS += $(PLATFORM_COMMON_PATH)/overlay
 
 # CM Hardware
-BOARD_HARDWARE_CLASS += device/sony/shinano-common/cmhw
+BOARD_HARDWARE_CLASS += $(PLATFORM_COMMON_PATH)/cmhw
 
 # ANT+ Permissions
 PRODUCT_COPY_FILES += \

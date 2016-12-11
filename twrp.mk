@@ -8,6 +8,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Common path
+COMMON_PATH := device/sony/common
+
+# Platform path
+PLATFORM_COMMON_PATH := device/sony/shinano-common
+
 # Time Zone data for Recovery
 PRODUCT_COPY_FILES += \
     bionic/libc/zoneinfo/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
@@ -40,22 +46,22 @@ TW_CRYPTO_FS_FLAGS := "0x00000406"
 TW_CRYPTO_KEY_LOC := "footer"
 
 # Recovery
-#TARGET_RECOVERY_FSTAB := device/sony/shinano-common/multirom/twrp.fstab
+#TARGET_RECOVERY_FSTAB := $(PLATFORM_COMMON_PATH)/multirom/twrp.fstab
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
 
 #MultiROM config. MultiROM also uses parts of TWRP config
 TARGET_RECOVERY_IS_MULTIROM := true
 MR_INPUT_TYPE := type_b
-MR_INIT_DEVICES := device/sony/shinano-common/multirom/mr_init_devices.c
-MR_BINARY_SELECTOR := device/sony/shinano-common/multirom/mr_binary_selector.c
-MR_DEVICE_HOOKS := device/sony/shinano-common/multirom/mr_ric_hook.c
+MR_INIT_DEVICES := $(PLATFORM_COMMON_PATH)/multirom/mr_init_devices.c
+MR_BINARY_SELECTOR := $(PLATFORM_COMMON_PATH)/multirom/mr_binary_selector.c
+MR_DEVICE_HOOKS := $(PLATFORM_COMMON_PATH)/multirom/mr_ric_hook.c
 MR_DEVICE_HOOKS_VER := 3
 MR_USE_QCOM_OVERLAY := true
-MR_QCOM_OVERLAY_HEADER := device/sony/shinano-common/multirom/mr_qcom_overlay.h
+MR_QCOM_OVERLAY_HEADER := $(PLATFORM_COMMON_PATH)/multirom/mr_qcom_overlay.h
 MR_QCOM_OVERLAY_CUSTOM_PIXEL_FORMAT := MDP_RGBX_8888
 MR_KEXEC_DTB := true
 MR_NO_KEXEC := enabled
-MR_FSTAB := device/sony/shinano-common/multirom/twrp.fstab
+MR_FSTAB := $(PLATFORM_COMMON_PATH)/multirom/twrp.fstab
 MR_USE_MROM_FSTAB := true
 MR_PIXEL_FORMAT := "RGBX_8888"
 
