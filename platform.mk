@@ -142,3 +142,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qti.sensors.tilt_detector=false \
     ro.qti.sensors.dpc=false \
     ro.qti.sensors.wu=false
+
+# Sensors config
+PRODUCT_COPY_FILES += \
+    $(SONY_ROOT)/system/etc/sec_config:system/etc/sec_config
