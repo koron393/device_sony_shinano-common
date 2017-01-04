@@ -76,6 +76,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     charger_res_images
 
+# RIL class override
+BOARD_RIL_CLASS := ../../../$(PLATFORM_COMMON_PATH)/ril/
+
 # Audio offload
 PRODUCT_PROPERTY_OVERRIDES += \
     audio.offload.buffer.size.kb=32 \
