@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <sys/mount.h>
 
 #include <cutils/klog.h>
@@ -31,6 +32,36 @@ void mrom_hook_before_fb_close(void) {}
 #endif
 
 #if MR_DEVICE_HOOKS >= 3
+static int remove_line_file(const char* filename, const char* search_str) {
+    char* outFileName = "tmpfile";
+    FILE* inFile = fopen(filename, "r");
+    FILE* outFile = fopen(outFileName, "w+");
+    char line [1024];
+
+    if( inFile == NULL ) {
+        return -1;
+    }
+
+    while( fgets(line, sizeof(line), inFile) != NULL ) {
+        if( strstr(line, search_str) == NULL ) {
+            fprintf(outFile, "%s", line);
+        }
+    }
+
+    fclose(inFile);
+    fclose(outFile);
+
+    // possible you have to remove old file here before
+    if( remove(filename) ) {
+        return -1;
+    }
+    if( rename(outFileName, filename) ) {
+        return -1;
+    }
+
+    return 0;
+}
+
 void tramp_hook_before_device_init(void)
 {
 	// Mount the securityfs for disabling sony_ric.
@@ -43,12 +74,12 @@ void tramp_hook_before_device_init(void)
     char d = 0;
     FILE *fd = fopen("/sys/kernel/security/sony_ric/enable", "r");
     if (fd != NULL) {
-    	// File exists: we can avoid further null checks.
-    	fread(&ric_was_enabled, 1, 1, fd);
-        fclose(fd);
-    	INFO_DEV("RIC enabled?: %c.\n", ric_was_enabled);
-    	if (ric_was_enabled == '1')
-    	{
+	// File exists: we can avoid further null checks.
+	fread(&ric_was_enabled, 1, 1, fd);
+	fclose(fd);
+	INFO_DEV("RIC enabled?: %c.\n", ric_was_enabled);
+	if (ric_was_enabled == '1')
+	{
 			INFO_DEV("Disabling RIC.\n");
 			fd = fopen("/sys/kernel/security/sony_ric/enable", "w");
 			fwrite (&c, 1, 1, fd);
@@ -57,8 +88,12 @@ void tramp_hook_before_device_init(void)
 			fread(&d, 1, 1, fd);
 			INFO_DEV("RIC still enabled?: %c.\n", d);
 			fclose(fd);
-    	}
+	}
     }
+
+    // Prevent mounting the apps_log partition whose use would break stock roms.
+    //system("sed -i -e 's/\\/dev\\/block\\/bootdevice\\/by-name\\/apps_log.*\\/misc/#\\/dev\\/block\\/bootdevice\\/by-name\\/apps_log\\1\\/misc/g' /fstab.shinano");
+    remove_line_file("/fstab.shinano", "apps_log");
 }
 #endif
 
