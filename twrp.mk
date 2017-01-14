@@ -83,5 +83,5 @@ MR_KEXEC_MEM_MIN := 0x0ff00000
 
 # Versioning
 BOARD_MKBOOTIMG_ARGS += --board mrom$(MR_REC_VERSION)
-MR_REC_VERSION := $(shell date -u +%Y%m%d)-01
+#MR_REC_VERSION := $(shell date -u +%Y%m%d)-01
 #MR_DEVICE_SPECIFIC_VERSION := c
