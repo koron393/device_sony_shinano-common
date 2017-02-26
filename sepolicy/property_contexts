@@ -1,2 +1,0 @@
-ctl.perfd               u:object_r:perfd_prop:s0
-ctl.iop                 u:object_r:perfd_prop:s0
