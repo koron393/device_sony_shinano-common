@@ -18,21 +18,22 @@ int get_mutirom_binary_string(char *binary_name)
     {
         INFO("Determining kernel version...\n");
         ver_string = strdup(sys_version.release);
-        INFO("Kernel version: %s\n", ver_string);
+        INFO("%s\n", sys_version.release);
+        INFO("%s\n", ver_string);
         ver_substring = strsep(&ver_string, ".");
 
         ver_substring = strsep(&ver_string, ".");
-        minor_num = strtol(ver_substring, &conv_end, 10);
+        minor_num = strtol(ver_substring, &conv_end, strlen(ver_substring));
 
-        ver_substring = strsep(&ver_string, "-");
-        patch_num = strtol(ver_substring, &conv_end, 10);
+        ver_substring = strsep(&ver_string, ".");
+        patch_num = strtol(ver_substring, &conv_end, strlen(ver_substring));
 
-        if (minor_num < 10 || (minor_num == 10 && patch_num == 96))
-        {
-            INFO("Using multirom binary compiled for 1.2.2 AOSP kernels.\n");
-            strcpy(binary_name, MULTIROM_122);
-            return 0;
-         }
+      if (minor_num < 10 || (minor_num == 10 && patch_num == 96))
+      {
+          INFO("Using multirom binary compiled for 1.2.2 AOSP kernels.\n");
+          strcpy(binary_name, MULTIROM_122);
+          return 0;
+       }
     }
     else
     {
