@@ -12,26 +12,6 @@
 static char ric_was_enabled = 0;
 
 #if MR_DEVICE_HOOKS >= 1
-int mrom_hook_after_android_mounts(const char *busybox_path, const char *base_path, int type)
-{
-	if (ric_was_enabled == '1')
-	{
-		FILE *fd = fopen("/sys/kernel/security/sony_ric/enable", "r");
-		if (fd != NULL) {
-			INFO_DEV("Re-enabling RIC (It was set before).\n");
-			fwrite (&ric_was_enabled, 1, 1, fd);
-			fclose(fd);
-		}
-	}
-	return 0;
-}
-#endif
-
-#if MR_DEVICE_HOOKS >= 2
-void mrom_hook_before_fb_close(void) {}
-#endif
-
-#if MR_DEVICE_HOOKS >= 3
 static int remove_line_file(const char* filename, const char* search_str) {
     char* outFileName = "tmpfile";
     FILE* inFile = fopen(filename, "r");
@@ -62,6 +42,31 @@ static int remove_line_file(const char* filename, const char* search_str) {
     return 0;
 }
 
+int mrom_hook_after_android_mounts(const char *busybox_path, const char *base_path, int type)
+{
+	if (ric_was_enabled == '1')
+	{
+		FILE *fd = fopen("/sys/kernel/security/sony_ric/enable", "r");
+		if (fd != NULL) {
+			INFO_DEV("Re-enabling RIC (It was set before).\n");
+			fwrite (&ric_was_enabled, 1, 1, fd);
+			fclose(fd);
+		}
+	}
+
+    // Prevent mounting the apps_log partition whose use would break stock roms.
+    //system("sed -i -e 's/\\/dev\\/block\\/bootdevice\\/by-name\\/apps_log.*\\/misc/#\\/dev\\/block\\/bootdevice\\/by-name\\/apps_log\\1\\/misc/g' /fstab.shinano");
+    remove_line_file("/fstab.shinano", "apps_log");
+
+	return 0;
+}
+#endif // MR_DEVICE_HOOKS >= 1
+
+#if MR_DEVICE_HOOKS >= 2
+void mrom_hook_before_fb_close(void) {}
+#endif
+
+#if MR_DEVICE_HOOKS >= 3
 void tramp_hook_before_device_init(void)
 {
 	// Mount the securityfs for disabling sony_ric.
