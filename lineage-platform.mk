@@ -19,7 +19,7 @@ COMMON_PATH := device/sony/common
 PLATFORM_COMMON_PATH := device/sony/shinano-common
 
 # inherit from common
-$(call inherit-product, $(COMMON_PATH)/cm-common.mk)
+$(call inherit-product, $(COMMON_PATH)/lineage-common.mk)
 
 # Platform
 BOARD_VENDOR_PLATFORM := shinano
