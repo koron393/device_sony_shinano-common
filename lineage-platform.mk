@@ -59,6 +59,10 @@ AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
 # Dumpstate
 BOARD_LIB_DUMPSTATE := libdumpstate.sony
 
+# Media codecs (HEVC)
+PRODUCT_PACKAGES += \
+    libOmxVdecHevc
+
 # NFC
 NXP_CHIP_TYPE := PN547C2
 BOARD_NFC_CHIPSET := pn547
