@@ -85,6 +85,9 @@ NXP_CHIP_FW_TYPE := PN547C2
 BOARD_HAVE_ALTERNATE_FM := true
 BOARD_HAVE_BCM_FM := true
 
+# Camera
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+
 # Props for hotplugging
 TARGET_SYSTEM_PROP += $(PLATFORM_COMMON_PATH)/system.prop
 
