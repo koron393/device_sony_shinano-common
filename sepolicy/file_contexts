@@ -1,5 +1,0 @@
-# Hardware tunables
-/sys/devices/virtual/timed_output/vibrator/vtg_level            u:object_r:sysfs_vibrator:s0
-
-/dev/socket/perfd(/.*)?                         u:object_r:mpctl_socket:s0
-/sys/class/devfreq(/.*)?                        u:object_r:sysfs_devfreq:s0
