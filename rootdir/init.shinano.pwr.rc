@@ -134,3 +134,18 @@ on property:init.svc.bootanim=stopped
     chown system system /sys/module/cpu_boost/parameters/input_boost_enabled
     chmod 0644 /sys/module/cpu_boost/parameters/input_boost_enabled
     write /sys/module/cpu_boost/parameters/input_boost_enabled 0
+
+    # Adreno Idler
+    chown system system /sys/module/adreno_idler/parameters/
+    chown system system /sys/module/adreno_idler/parameters/adreno_idler_active
+    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_active
+    chown system system /sys/module/adreno_idler/parameters/adreno_idler_downdifferential
+    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_downdifferential
+    chown system system /sys/module/adreno_idler/parameters/adreno_idler_idlewait
+    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_idlewait
+    chown system system /sys/module/adreno_idler/parameters/adreno_idler_idleworkload
+    chmod 0644 /sys/module/adreno_idler/parameters/adreno_idler_idleworkload
+    write /sys/module/adreno_idler/parameters/adreno_idler_active "N"
+    write /sys/module/adreno_idler/parameters/adreno_idler_downdifferential 50
+    write /sys/module/adreno_idler/parameters/adreno_idler_idlewait 99
+    write /sys/module/adreno_idler/parameters/adreno_idler_idleworkload 1000
