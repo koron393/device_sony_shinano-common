@@ -124,7 +124,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # IO Scheduler
 PRODUCT_PROPERTY_OVERRIDES += \
-    sys.io.scheduler=cfq
+    sys.io.scheduler=row
 
 # HWUI memory limits
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
